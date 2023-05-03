@@ -2,7 +2,16 @@ require "spec_helper"
 require "rack/test"
 require_relative '../../app'
 
+def reset_albums_table
+  seed_sql = File.read('spec/seeds/albums_seeds.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'music_library_test' })
+  connection.exec(seed_sql)
+end
+
 describe Application do
+  before(:each) do 
+    reset_albums_table
+  end
   # This is so we can use rack-test helper methods.
   include Rack::Test::Methods
 
@@ -51,7 +60,7 @@ describe Application do
   end
 
   context "GET /albums/:id" do
-    xit "returns the first albums information" do
+    it "returns the first albums information" do
       response = get('/albums/1')
       
       expect(response.status).to eq(200)

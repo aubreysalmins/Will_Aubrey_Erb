@@ -59,7 +59,7 @@ class Application < Sinatra::Base
     repo = AlbumRepository.new
     artist_repo = ArtistRepository.new
     album = repo.find(@id)
-
+    
     @title = album.title
     @release_year = album.release_year
     @artist = artist_repo.find(album.artist_id).name
