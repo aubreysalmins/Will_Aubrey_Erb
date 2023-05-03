@@ -49,4 +49,13 @@ describe Application do
       expect(response.body).to eq('Pixies, ABBA, Taylor Swift, Nina Simone, Kiasmos, Wild nothing')
     end
   end
+
+  context "GET /albums/:id" do
+    it "returns the first albums information" do
+      response = get('/albums/1')
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Doolittle', 'Release year: 1989', 'Artist: Pixies')
+    end
+  end
 end
