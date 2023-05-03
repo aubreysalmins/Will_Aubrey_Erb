@@ -63,5 +63,11 @@ class Application < Sinatra::Base
     repo = AlbumRepository.new
     album = repo.find(id)
 
+    @title = album.title
+    @release_year = album.release_year
+    @artist = album.artist_id
+
+    return erb(:index)
+    
   end
 end
