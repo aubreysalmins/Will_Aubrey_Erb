@@ -53,7 +53,7 @@ describe Application do
   context "GET /albums/:id" do
     it "returns the first albums information" do
       response = get('/albums/1')
-
+      
       expect(response.status).to eq(200)
       expect(response.body).to include('Doolittle', 'Release year: 1989', 'Artist: Pixies')
     end
